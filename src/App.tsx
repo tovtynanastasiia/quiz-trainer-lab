@@ -3,24 +3,28 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/auth/SignInPage";
 import SignUpPage from "./pages/auth/SignUpPage";
+import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import QuizPage from "./pages/quiz/QuizPage";
+import ManageSetsPage from "./pages/quiz/ManageSetsPage";
 import AccountPage from "./pages/account/AccountPage";
+import SettingsPage from "./pages/account/SettingsPage";
+import styles from "./App.module.css";
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
-        <nav className="bg-white border-b border-gray-200">
-          <div className="container-nice py-4">
-            <div className="flex justify-between items-center">
-              <Link to="/" className="text-xl font-bold text-gray-900">
+      <div className={styles.app}>
+        <nav className={styles.nav}>
+          <div className={styles.navContainer}>
+            <div className={styles.navContent}>
+              <Link to="/" className={styles.logo}>
                 QuizTrainer 🎯
               </Link>
-              <div className="flex items-center gap-4">
-                <Link to="/quiz" className="text-gray-700 hover:text-gray-900">
+              <div className={styles.navLinks}>
+                <Link to="/quiz" className={styles.navLink}>
                   Квізи
                 </Link>
-                <Link to="/account" className="text-gray-700 hover:text-gray-900">
+                <Link to="/account" className={styles.navLink}>
                   Профіль
                 </Link>
                 <Link to="/auth/sign-in" className="btn btn-ghost text-sm">
@@ -39,8 +43,11 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/auth/sign-in" element={<SignInPage />} />
             <Route path="/auth/sign-up" element={<SignUpPage />} />
+            <Route path="/auth/reset" element={<ResetPasswordPage />} />
             <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/quiz/manage" element={<ManageSetsPage />} />
             <Route path="/account" element={<AccountPage />} />
+            <Route path="/account/settings" element={<SettingsPage />} />
           </Routes>
         </main>
       </div>

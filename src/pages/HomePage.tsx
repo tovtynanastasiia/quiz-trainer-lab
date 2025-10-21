@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./HomePage.module.css";
 
 const HomePage: React.FC = () => {
   return (
@@ -10,11 +11,11 @@ const HomePage: React.FC = () => {
         <p className="text-xl text-gray-600 mb-6">
           Інтерактивний тренажер для вивчення іноземних слів
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-3">
-          <Link className="btn btn-primary" to="/auth/sign-in">
+        <div className={styles.headerButtons}>
+          <Link className={`btn btn-primary ${styles.headerButton}`} to="/auth/sign-in">
             Увійти
           </Link>
-          <Link className="btn btn-ghost" to="/auth/sign-up">
+          <Link className={`btn btn-ghost ${styles.headerButton}`} to="/auth/sign-up">
             Реєстрація
           </Link>
         </div>
@@ -28,37 +29,35 @@ const HomePage: React.FC = () => {
           Використовуючи інтерактивні квізи та адаптивну систему повторень, ви можете швидко та
           результативно розширити свій словниковий запас.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-6">
-          <div className="text-center p-4 bg-blue-50 rounded-lg">
-            <div className="text-2xl mb-2">📚</div>
-            <h3 className="font-semibold mb-2">Персоналізовані набори</h3>
-            <p className="text-sm text-gray-600">
+        <div className={styles.featuresGrid}>
+          <div className={styles.blueCard}>
+            <div className={styles.emoji}>📚</div>
+            <h3 className={styles.cardTitle}>Персоналізовані набори</h3>
+            <p className={styles.cardText}>
               Створюйте власні набори слів або використовуйте готові
             </p>
           </div>
-          <div className="text-center p-4 bg-green-50 rounded-lg">
-            <div className="text-2xl mb-2">🎯</div>
-            <h3 className="font-semibold mb-2">Чотири режими тренування</h3>
-            <p className="text-sm text-gray-600">
+          <div className={styles.greenCard}>
+            <div className={styles.emoji}>🎯</div>
+            <h3 className={styles.cardTitle}>Чотири режими тренування</h3>
+            <p className={styles.cardText}>
               Навчання, точність, швидкість та флеш-картки для різних цілей
             </p>
           </div>
-          <div className="text-center p-4 bg-yellow-50 rounded-lg">
-            <div className="text-2xl mb-2">🌍</div>
-            <h3 className="font-semibold mb-2">Всі слова разом</h3>
-            <p className="text-sm text-gray-600">
-              Тренуйтесь з усіма словами з усіх наборів одночасно
-            </p>
+          <div className={styles.yellowCard}>
+            <div className={styles.emoji}>🌍</div>
+            <h3 className={styles.cardTitle}>Всі слова разом</h3>
+            <p className={styles.cardText}>Тренуйтесь з усіма словами з усіх наборів одночасно</p>
           </div>
-          <div className="text-center p-4 bg-purple-50 rounded-lg">
-            <div className="text-2xl mb-2">📊</div>
-            <h3 className="font-semibold mb-2">Детальна статистика</h3>
-            <p className="text-sm text-gray-600">Відстежуйте свій прогрес та досягнення</p>
+          <div className={styles.purpleCard}>
+            <div className={styles.emoji}>📊</div>
+            <h3 className={styles.cardTitle}>Детальна статистика</h3>
+            <p className={styles.cardText}>Відстежуйте свій прогрес та досягнення</p>
           </div>
-          <div className="text-center p-4 bg-orange-50 rounded-lg">
-            <div className="text-2xl mb-2">🎲</div>
-            <h3 className="font-semibold mb-2">Генератор речень</h3>
-            <p className="text-sm text-gray-600">Створюйте речення для тренування слів</p>
+          <div className={styles.orangeCard}>
+            <div className={styles.emoji}>🎲</div>
+            <h3 className={styles.cardTitle}>Генератор речень</h3>
+            <p className={styles.cardText}>Створюйте речення для тренування слів</p>
           </div>
         </div>
       </div>
@@ -66,18 +65,18 @@ const HomePage: React.FC = () => {
       {/* Опис режимів */}
       <div className="card p-6">
         <h2 className="text-2xl font-semibold mb-4">Режими тренування</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className={styles.modesGrid}>
           {/* Режим навчання */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">📖</div>
-              <h3 className="text-xl font-semibold">Режим «Навчання»</h3>
+          <div className={styles.modeCard}>
+            <div className={styles.modeHeader}>
+              <div className={styles.modeEmoji}>📖</div>
+              <h3 className={styles.modeTitle}>Режим «Навчання»</h3>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className={styles.modeDescription}>
               Ідеальний для початківців та систематичного вивчення слів. Система адаптивних
               повторень допомагає закріпити слова в пам'яті.
             </p>
-            <ul className="text-sm text-gray-600 space-y-1">
+            <ul className={styles.modeFeatures}>
               <li>• Без обмежень за часом</li>
               <li>• Адаптивні повторення</li>
               <li>• Множинний вибір наборів</li>
@@ -86,16 +85,16 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Режим точності */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">🎯</div>
-              <h3 className="text-xl font-semibold">Режим «Точність»</h3>
+          <div className={styles.modeCard}>
+            <div className={styles.modeHeader}>
+              <div className={styles.modeEmoji}>🎯</div>
+              <h3 className={styles.modeTitle}>Режим «Точність»</h3>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className={styles.modeDescription}>
               Тренуйте уважність та правильність введення. За 4 хвилини потрібно правильно ввести
               всі 20 слів з набору.
             </p>
-            <ul className="text-sm text-gray-600 space-y-1">
+            <ul className={styles.modeFeatures}>
               <li>• 20 слів за 4 хвилини</li>
               <li>• Один набір або "Всі слова"</li>
               <li>• Рахується точність</li>
@@ -104,16 +103,16 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Режим швидкості */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">⚡</div>
-              <h3 className="text-xl font-semibold">Режим «Швидкість»</h3>
+          <div className={styles.modeCard}>
+            <div className={styles.modeHeader}>
+              <div className={styles.modeEmoji}>⚡</div>
+              <h3 className={styles.modeTitle}>Режим «Швидкість»</h3>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className={styles.modeDescription}>
               Розвивайте швидкість набору та реакцію. За 4 хвилини введіть якнайбільшу кількість
               слів правильно.
             </p>
-            <ul className="text-sm text-gray-600 space-y-1">
+            <ul className={styles.modeFeatures}>
               <li>• 4 хвилини на гру</li>
               <li>• Один набір або "Всі слова"</li>
               <li>• Рахується кількість</li>
@@ -122,16 +121,16 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Режим флеш-карток */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">🃏</div>
-              <h3 className="text-xl font-semibold">Режим «Флеш-картки»</h3>
+          <div className={styles.modeCard}>
+            <div className={styles.modeHeader}>
+              <div className={styles.modeEmoji}>🃏</div>
+              <h3 className={styles.modeTitle}>Режим «Флеш-картки»</h3>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className={styles.modeDescription}>
               Класичний метод вивчення з флеш-картками. Переглядайте слово, оцінюйте свої знання та
               переходите далі.
             </p>
-            <ul className="text-sm text-gray-600 space-y-1">
+            <ul className={styles.modeFeatures}>
               <li>• Без обмежень за часом</li>
               <li>• Один набір або "Всі слова"</li>
               <li>• Оцінка знань</li>
@@ -141,24 +140,58 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
+      {/* Вибір наборів */}
+      <div className="card p-6">
+        <h2 className="text-2xl font-semibold mb-4">Вибір наборів слів</h2>
+        <div className={styles.stepsGrid}>
+          <div>
+            <h3 className="text-lg font-semibold mb-3">🌍 Всі слова разом</h3>
+            <ul className={styles.modeFeatures}>
+              <li>• Спеціальна опція для тренування з усіма словами</li>
+              <li>• Ексклюзивний вибір - не можна комбінувати з іншими</li>
+              <li>• Загальна статистика по всіх словах</li>
+              <li>• Ідеально для повторення всього матеріалу</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-3">📚 Індивідуальні набори</h3>
+            <ul className={styles.modeFeatures}>
+              <li>• Множинний вибір в режимі навчання</li>
+              <li>• Один набір в режимах точності, швидкості та флеш-карток</li>
+              <li>• Детальна статистика для кожного набору</li>
+              <li>• Прогрес-бари для відстеження вивчення</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-3">🏆 Система досягнень</h3>
+            <ul className={styles.modeFeatures}>
+              <li>• Словник: За вивчення 100+ слів</li>
+              <li>• Снайпер: За точність 90%+ в режимі точності</li>
+              <li>• Швидкість: За 30+ слів/хв в режимі швидкості</li>
+              <li>• Гравець: За 10+ зіграних ігор</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       {/* Як почати */}
       <div className="card p-6">
         <h2 className="text-2xl font-semibold mb-4">Як почати?</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="text-center p-4">
-            <div className="text-3xl mb-3">1️⃣</div>
-            <h3 className="font-semibold mb-2">Зареєструйтесь</h3>
-            <p className="text-sm text-gray-600">Створіть акаунт для збереження прогресу</p>
+        <div className={styles.stepsGrid}>
+          <div className={styles.stepCard}>
+            <div className={styles.stepEmoji}>1️⃣</div>
+            <h3 className={styles.stepTitle}>Зареєструйтесь</h3>
+            <p className={styles.stepText}>Створіть акаунт для збереження прогресу</p>
           </div>
-          <div className="text-center p-4">
-            <div className="text-3xl mb-3">2️⃣</div>
-            <h3 className="font-semibold mb-2">Створіть набори</h3>
-            <p className="text-sm text-gray-600">Додайте слова, які хочете вивчити</p>
+          <div className={styles.stepCard}>
+            <div className={styles.stepEmoji}>2️⃣</div>
+            <h3 className={styles.stepTitle}>Створіть набори</h3>
+            <p className={styles.stepText}>Додайте слова, які хочете вивчити</p>
           </div>
-          <div className="text-center p-4">
-            <div className="text-3xl mb-3">3️⃣</div>
-            <h3 className="font-semibold mb-2">Тренуйтесь</h3>
-            <p className="text-sm text-gray-600">Виберіть режим та почніть тренування</p>
+          <div className={styles.stepCard}>
+            <div className={styles.stepEmoji}>3️⃣</div>
+            <h3 className={styles.stepTitle}>Тренуйтесь</h3>
+            <p className={styles.stepText}>Виберіть режим та почніть тренування</p>
           </div>
         </div>
         <div className="text-center mt-6">

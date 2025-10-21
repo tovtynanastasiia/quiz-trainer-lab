@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Auth.module.css";
 
 const SignUpPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -19,10 +20,10 @@ const SignUpPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-8">
-      <div className="card p-6">
-        <h1 className="text-2xl font-semibold mb-4">Реєстрація</h1>
-        <form onSubmit={handleSubmit} className="space-y-3">
+    <div className={styles.container}>
+      <div className={styles.formCard}>
+        <h1 className={styles.title}>Реєстрація</h1>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <input
             className="input"
             placeholder="Email"
@@ -40,14 +41,14 @@ const SignUpPage: React.FC = () => {
             required
             minLength={6}
           />
-          {error && <div className="text-red-600 text-sm">{error}</div>}
+          {error && <div className={styles.error}>{error}</div>}
           <button className="btn btn-primary w-full" disabled={loading} type="submit">
             {loading ? "Зачекайте..." : "Створити акаунт"}
           </button>
         </form>
-        <div className="text-sm text-gray-600 mt-3">
+        <div className={styles.footer}>
           Вже маєте акаунт?{" "}
-          <Link to="/auth/sign-in" className="underline">
+          <Link to="/auth/sign-in" className={styles.link}>
             Увійти
           </Link>
         </div>

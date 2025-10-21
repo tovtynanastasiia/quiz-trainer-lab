@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Auth.module.css";
 
 const SignInPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -19,10 +20,10 @@ const SignInPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-8">
-      <div className="card p-6">
-        <h1 className="text-2xl font-semibold mb-4">Увійти</h1>
-        <form onSubmit={handleSubmit} className="space-y-3">
+    <div className={styles.container}>
+      <div className={styles.formCard}>
+        <h1 className={styles.title}>Увійти</h1>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <input
             className="input"
             placeholder="Email"
@@ -39,15 +40,20 @@ const SignInPage: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {error && <div className="text-red-600 text-sm">{error}</div>}
+          {error && <div className={styles.error}>{error}</div>}
           <button className="btn btn-primary w-full" disabled={loading} type="submit">
             {loading ? "Зачекайте..." : "Увійти"}
           </button>
         </form>
-        <div className="text-sm text-gray-600 mt-3">
+        <div className={styles.footer}>
           Немає акаунту?{" "}
-          <Link to="/auth/sign-up" className="underline">
+          <Link to="/auth/sign-up" className={styles.link}>
             Зареєструватися
+          </Link>
+        </div>
+        <div className={styles.footer}>
+          <Link to="/auth/reset" className={styles.link}>
+            Забули пароль?
           </Link>
         </div>
       </div>

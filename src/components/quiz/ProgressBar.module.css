@@ -1,0 +1,35 @@
+/* Progress Bar Component */
+
+.container {
+  width: 100%;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-gray-600);
+  margin-bottom: 0.25rem;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.value {
+  font-weight: 600;
+}
+
+.track {
+  height: 0.75rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: var(--color-gray-200);
+}
+
+.fill {
+  height: 100%;
+  background-color: black;
+  transition: width 0.3s ease;
+}
