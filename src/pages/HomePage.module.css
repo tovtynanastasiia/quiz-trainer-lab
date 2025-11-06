@@ -1,0 +1,174 @@
+/* HomePage Styles */
+
+.headerButtons {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.headerButton {
+  padding: 0.5rem 1.5rem !important;
+  width: auto !important;
+  min-width: 120px;
+}
+
+.blueCard {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--color-blue-50);
+  border-radius: 0.5rem;
+}
+
+.greenCard {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--color-green-50);
+  border-radius: 0.5rem;
+}
+
+.yellowCard {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--color-yellow-50);
+  border-radius: 0.5rem;
+}
+
+.purpleCard {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--color-purple-50);
+  border-radius: 0.5rem;
+}
+
+.orangeCard {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--color-orange-50);
+  border-radius: 0.5rem;
+}
+
+.emoji {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cardText {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+.modeCard {
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.modeHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.modeEmoji {
+  font-size: 1.875rem;
+}
+
+.modeTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.modeDescription {
+  color: var(--color-gray-600);
+  margin-bottom: 1rem;
+}
+
+.modeFeatures {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+  list-style: none;
+}
+
+.modeFeatures li {
+  margin-bottom: 0.25rem;
+}
+
+.stepCard {
+  text-align: center;
+  padding: 1rem;
+}
+
+.stepEmoji {
+  font-size: 1.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.stepTitle {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.stepText {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+/* Grid layouts */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modesGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .headerButtons {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .featuresGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stepsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .featuresGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .modesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .modesGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
