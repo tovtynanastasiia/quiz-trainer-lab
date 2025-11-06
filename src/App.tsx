@@ -14,6 +14,7 @@ import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import QuizPage from "./pages/quiz/QuizPage";
 import QuizDetailPage from "./pages/quiz/QuizDetailPage";
 import ManageSetsPage from "./pages/quiz/ManageSetsPage";
+import ManageWordsPage from "./pages/quiz/ManageWordsPage";
 import AccountPage from "./pages/account/AccountPage";
 import SettingsPage from "./pages/account/SettingsPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -56,6 +57,8 @@ function App() {
             <Route path="/auth/reset" element={<ResetPasswordPage />} />
             <Route path="/quiz" element={<QuizPage />} />
             <Route path="/quiz/manage" element={<ManageSetsPage />} />
+            {/* Роут для редагування слів в наборі (з query параметрами) */}
+            <Route path="/quiz/manage/words" element={<ManageWordsPage />} />
             {/* Динамічний роут для конкретного квізу */}
             <Route path="/quiz/:quizId" element={<QuizDetailPage />} />
             {/* Вкладені роути для account */}
