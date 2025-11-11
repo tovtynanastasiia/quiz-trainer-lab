@@ -1,56 +1,34 @@
-import { useState } from 'react'
-import type { JSX } from 'react'
-
+import { Route, Routes } from 'react-router-dom'
 import { AppLayout } from './layouts/AppLayout'
-import type { PageDefinition, PageKey } from './types/navigation'
 import { HomePage } from './pages/HomePage'
 import { LearningModesPage } from './pages/LearningModesPage'
 import { WordSetsPage } from './pages/WordSetsPage'
 import { SignInPage } from './pages/auth/SignInPage'
 import { SignUpPage } from './pages/auth/SignUpPage'
-
-const pages: PageDefinition[] = [
-  {
-    key: 'home',
-    label: 'Home',
-    description: 'Dashboard overview of current activity',
-  },
-  {
-    key: 'learning-modes',
-    label: 'Learning modes',
-    description: 'Explore available training experiences',
-  },
-  {
-    key: 'word-sets',
-    label: 'Word sets',
-    description: 'Organise and maintain your vocabulary collections',
-  },
-  {
-    key: 'sign-in',
-    label: 'Sign in',
-    description: 'Authenticate to sync your data',
-  },
-  {
-    key: 'sign-up',
-    label: 'Register',
-    description: 'Create a new learning account',
-  },
-]
-
-const pageComponents: Record<PageKey, JSX.Element> = {
-  home: <HomePage />,
-  'learning-modes': <LearningModesPage />,
-  'word-sets': <WordSetsPage />,
-  'sign-in': <SignInPage />,
-  'sign-up': <SignUpPage />,
-}
+import { WordSetDetailsPage } from './pages/sets/WordSetDetailsPage'
+import { AccountOverviewPage } from './pages/account/AccountOverviewPage'
+import { ProtectedRoute } from './routes/ProtectedRoute'
+import { NotFoundPage } from './pages/NotFoundPage'
 
 export default function App() {
-  const [activePage, setActivePage] = useState<PageKey>('home')
-
   return (
-    <AppLayout pages={pages} activePage={activePage} onNavigate={setActivePage}>
-      {pageComponents[activePage]}
-    </AppLayout>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="modes" element={<LearningModesPage />} />
+        <Route path="sets" element={<WordSetsPage />}>
+          <Route path=":setId" element={<WordSetDetailsPage />} />
+        </Route>
+        <Route path="auth">
+          <Route path="sign-in" element={<SignInPage />} />
+          <Route path="register" element={<SignUpPage />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="account" element={<AccountOverviewPage />} />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   )
 }

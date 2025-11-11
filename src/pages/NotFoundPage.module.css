@@ -1,0 +1,49 @@
+.wrapper {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+}
+
+.card {
+  max-width: 32rem;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.3);
+  display: grid;
+  gap: 1.25rem;
+}
+
+.code {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(96, 165, 250, 0.8);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+}
+
+.copy {
+  margin: 0;
+  color: rgba(148, 163, 184, 0.9);
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  padding: 0.75rem 1.5rem;
+  min-width: 8.5rem;
+}
+

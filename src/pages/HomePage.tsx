@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { PageHeader } from '../components/common/PageHeader'
 import { SectionCard } from '../components/common/SectionCard'
 import styles from './HomePage.module.css'
@@ -45,9 +46,17 @@ export function HomePage() {
           description="The last groups of terms you imported or created manually."
         >
           <ul className={styles.verticalList}>
-            <li>Essential travel phrases — 24 terms</li>
-            <li>Business negotiations — 18 terms</li>
-            <li>Academic connectors — 12 terms</li>
+            <li>
+              <Link to="/sets/travel-phrases">Essential travel phrases — 24 terms</Link>
+            </li>
+            <li>
+              <Link to="/sets/business-negotiations">
+                Business negotiations — 18 terms
+              </Link>
+            </li>
+            <li>
+              <Link to="/sets/academic-connectors">Academic connectors — 12 terms</Link>
+            </li>
           </ul>
         </SectionCard>
       </div>

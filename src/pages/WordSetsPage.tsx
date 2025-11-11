@@ -1,3 +1,4 @@
+import { Link, Outlet } from 'react-router-dom'
 import { PageHeader } from '../components/common/PageHeader'
 import { SectionCard } from '../components/common/SectionCard'
 import styles from './WordSetsPage.module.css'
@@ -39,7 +40,23 @@ export function WordSetsPage() {
             planning the next study session to focus on weaker areas.
           </p>
         </SectionCard>
+
+        <SectionCard title="Featured sets">
+          <ul className={styles.list}>
+            <li>
+              <Link to="/sets/travel-phrases">Travel phrases</Link>
+            </li>
+            <li>
+              <Link to="/sets/business-negotiations">Business negotiations</Link>
+            </li>
+            <li>
+              <Link to="/sets/academic-connectors">Academic connectors</Link>
+            </li>
+          </ul>
+        </SectionCard>
       </div>
+
+      <Outlet />
     </>
   )
 }

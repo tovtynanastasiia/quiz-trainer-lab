@@ -1,30 +1,28 @@
-import type { PageDefinition, PageKey } from '../../types/navigation'
+import { NavLink } from 'react-router-dom'
+import type { NavItem } from '../../types/navigation'
 import { classNames } from '../../lib/classNames'
 import styles from './PrimaryNav.module.css'
 
 interface PrimaryNavProps {
-  items: PageDefinition[]
-  activePage: PageKey
-  onNavigate: (page: PageKey) => void
+  items: NavItem[]
 }
 
-export function PrimaryNav({ items, activePage, onNavigate }: PrimaryNavProps) {
+export function PrimaryNav({ items }: PrimaryNavProps) {
   return (
     <nav aria-label="Main">
       <ul className={styles.navList}>
         {items.map((item) => (
-          <li key={item.key}>
-            <button
-              type="button"
-              className={classNames(
-                styles.navButton,
-                item.key === activePage && styles.navButtonActive,
-              )}
-              onClick={() => onNavigate(item.key)}
+          <li key={item.to}>
+            <NavLink
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) =>
+                classNames(styles.link, isActive && styles.linkActive)
+              }
             >
               <span className={styles.navLabel}>{item.label}</span>
               <span className={styles.navDescription}>{item.description}</span>
-            </button>
+            </NavLink>
           </li>
         ))}
       </ul>

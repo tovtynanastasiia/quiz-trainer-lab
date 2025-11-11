@@ -1,8 +1,19 @@
+import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '../../components/common/PageHeader'
 import { SectionCard } from '../../components/common/SectionCard'
 import styles from './AuthPage.module.css'
+import { useAuthPreview } from '../../modules/auth/useAuthPreview'
 
 export function SignUpPage() {
+  const navigate = useNavigate()
+  const { signIn, setRedirectPath } = useAuthPreview()
+
+  const handleRegister = () => {
+    signIn()
+    setRedirectPath(null)
+    navigate('/account', { replace: true })
+  }
+
   return (
     <>
       <PageHeader
@@ -54,10 +65,14 @@ export function SignUpPage() {
             />
           </label>
           <div className={styles.actions}>
-            <button type="button" className={styles.primary} disabled>
-              Register (coming soon)
+            <button type="button" className={styles.primary} onClick={handleRegister}>
+              Register preview
             </button>
-            <button type="button" className={styles.ghost}>
+            <button
+              type="button"
+              className={styles.ghost}
+              onClick={() => navigate('/auth/sign-in')}
+            >
               Back to sign in
             </button>
           </div>

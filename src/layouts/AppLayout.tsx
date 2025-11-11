@@ -1,20 +1,10 @@
-import type { PropsWithChildren } from 'react'
-import type { PageDefinition, PageKey } from '../types/navigation'
+import { Outlet } from 'react-router-dom'
 import { PrimaryNav } from '../components/navigation/PrimaryNav'
 import styles from './AppLayout.module.css'
+import { primaryNavItems } from '../routes/navItems'
+import { AuthPreviewIndicator } from '../modules/auth/AuthPreviewIndicator'
 
-interface AppLayoutProps extends PropsWithChildren {
-  pages: PageDefinition[]
-  activePage: PageKey
-  onNavigate: (page: PageKey) => void
-}
-
-export function AppLayout({
-  pages,
-  activePage,
-  onNavigate,
-  children,
-}: AppLayoutProps) {
+export function AppLayout() {
   return (
     <div className={styles.appShell}>
       <aside className={styles.sidebar}>
@@ -22,12 +12,15 @@ export function AppLayout({
           <span className={styles.brandMark}>QT</span>
           <span className={styles.brandText}>Quiz Trainer</span>
         </div>
-        <PrimaryNav items={pages} activePage={activePage} onNavigate={onNavigate} />
+        <PrimaryNav items={primaryNavItems} />
+        <AuthPreviewIndicator />
       </aside>
       <div className={styles.content}>
-        <main className={styles.main}>{children}</main>
+        <main className={styles.main}>
+          <Outlet />
+        </main>
         <footer className={styles.footer}>
-          <small>Lab 4 • Styled interface prototype (no business logic yet)</small>
+          <small>Lab 5 • Router-focused iteration</small>
         </footer>
       </div>
     </div>

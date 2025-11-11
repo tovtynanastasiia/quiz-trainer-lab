@@ -1,8 +1,21 @@
+import { useNavigate, useLocation } from 'react-router-dom'
 import { PageHeader } from '../../components/common/PageHeader'
 import { SectionCard } from '../../components/common/SectionCard'
 import styles from './AuthPage.module.css'
+import { useAuthPreview } from '../../modules/auth/useAuthPreview'
 
 export function SignInPage() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { signIn, redirectPath, setRedirectPath } = useAuthPreview()
+
+  const handleSubmit = () => {
+    signIn()
+    const target = redirectPath ?? '/account'
+    setRedirectPath(null)
+    navigate(target, { replace: true, state: { from: location } })
+  }
+
   return (
     <>
       <PageHeader
@@ -34,8 +47,8 @@ export function SignInPage() {
             />
           </label>
           <div className={styles.actions}>
-            <button type="button" className={styles.primary} disabled>
-              Sign in (coming soon)
+            <button type="button" className={styles.primary} onClick={handleSubmit}>
+              Sign in preview
             </button>
             <button type="button" className={styles.ghost}>
               Forgot password?
