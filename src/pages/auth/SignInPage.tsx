@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
+import { useAuth } from "../../lib/auth/AuthContext";
 
 const SignInPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from =
+    (location.state as { from?: { pathname?: string } } | undefined)?.from?.pathname ??
+    "/account";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +23,9 @@ const SignInPage: React.FC = () => {
     // const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     // if (error) setError(error.message);
-    // else navigate('/quiz');
+    // else login();
+    login();
+    navigate(from, { replace: true });
   };
 
   return (

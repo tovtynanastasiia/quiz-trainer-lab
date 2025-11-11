@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./AccountPage.module.css";
+import { useAuth } from "../../lib/auth/AuthContext";
 
 const AccountPage: React.FC = () => {
   // Заглушка для статистики (мінімальні дані для демонстрації дизайну)
@@ -8,6 +9,13 @@ const AccountPage: React.FC = () => {
     totalWords: 0,
     averageAccuracy: 0,
     totalTime: 0,
+  };
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/", { replace: true });
   };
 
   return (
@@ -30,7 +38,9 @@ const AccountPage: React.FC = () => {
               <Link className="btn btn-ghost" to="/account/settings">
                 Налаштування
               </Link>
-              <button className="btn btn-ghost">Вийти</button>
+              <button className="btn btn-ghost" type="button" onClick={handleLogout}>
+                Вийти
+              </button>
             </div>
           </div>
         </div>
