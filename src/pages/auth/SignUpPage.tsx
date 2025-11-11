@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
+import { useAuth } from "../../lib/auth/AuthContext";
 
 const SignUpPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,6 +20,8 @@ const SignUpPage: React.FC = () => {
     setLoading(false);
     // if (error) setError(error.message);
     // else navigate('/quiz');
+    login();
+    navigate("/quiz", { replace: true });
   };
 
   return (

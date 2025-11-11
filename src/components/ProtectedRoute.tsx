@@ -1,15 +1,13 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { useAuth } from "../lib/auth/AuthContext";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  isAuthenticated?: boolean;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  children,
-  isAuthenticated = false, // В майбутньому буде з контексту або Redux
-}) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  const { isAuthenticated } = useAuth();
   const location = useLocation();
 
   if (!isAuthenticated) {

@@ -20,8 +20,15 @@ import SettingsPage from "./pages/account/SettingsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import styles from "./App.module.css";
+import { useAuth } from "./lib/auth/AuthContext";
 
 function App() {
+  const { isAuthenticated, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <Router>
       <div className={styles.app}>
@@ -35,15 +42,28 @@ function App() {
                 <Link to="/quiz" className={styles.navLink}>
                   Квізи
                 </Link>
-                <Link to="/account" className={styles.navLink}>
-                  Профіль
+                <Link to="/quiz/manage" className={styles.navLink}>
+                  Набори
                 </Link>
-                <Link to="/auth/sign-in" className="btn btn-ghost text-sm">
-                  Вхід
-                </Link>
-                <Link to="/auth/sign-up" className="btn btn-primary text-sm">
-                  Реєстрація
-                </Link>
+                {isAuthenticated ? (
+                  <>
+                    <Link to="/account" className={styles.navLink}>
+                      Профіль
+                    </Link>
+                    <button className="btn btn-ghost text-sm" onClick={handleLogout} type="button">
+                      Вийти
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/auth/sign-in" className="btn btn-ghost text-sm">
+                      Вхід
+                    </Link>
+                    <Link to="/auth/sign-up" className="btn btn-primary text-sm">
+                      Реєстрація
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -65,7 +85,7 @@ function App() {
             <Route
               path="/account"
               element={
-                <ProtectedRoute isAuthenticated={false}>
+                <ProtectedRoute>
                   <Outlet />
                 </ProtectedRoute>
               }
