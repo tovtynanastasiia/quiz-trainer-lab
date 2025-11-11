@@ -1,3 +1,5 @@
+import styles from './PageHeader.module.css'
+
 interface PageHeaderProps {
   title: string
   subtitle?: string
@@ -6,10 +8,10 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, subtitle, eyebrow }: PageHeaderProps) {
   return (
-    <header className="page-header">
-      {eyebrow ? <p className="page-header__eyebrow">{eyebrow}</p> : null}
-      <h1 className="page-header__title">{title}</h1>
-      {subtitle ? <p className="page-header__subtitle">{subtitle}</p> : null}
+    <header className={styles.root}>
+      {eyebrow ? <p className={styles.eyebrow}>{eyebrow}</p> : null}
+      <h1 className={styles.title}>{title}</h1>
+      {subtitle ? <p className={styles.subtitle}>{subtitle}</p> : null}
     </header>
   )
 }

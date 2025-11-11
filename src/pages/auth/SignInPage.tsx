@@ -1,5 +1,6 @@
 import { PageHeader } from '../../components/common/PageHeader'
 import { SectionCard } from '../../components/common/SectionCard'
+import styles from './AuthPage.module.css'
 
 export function SignInPage() {
   return (
@@ -11,20 +12,32 @@ export function SignInPage() {
       />
 
       <SectionCard title="Credentials">
-        <form className="form-grid" aria-label="Sign in form">
-          <label className="form-field">
-            <span>Email address</span>
-            <input type="email" name="email" placeholder="you@example.com" required />
+        <form className={styles.form} aria-label="Sign in form">
+          <label className={styles.field}>
+            <span className={styles.label}>Email address</span>
+            <input
+              className={styles.input}
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+            />
           </label>
-          <label className="form-field">
-            <span>Password</span>
-            <input type="password" name="password" placeholder="••••••••" required />
+          <label className={styles.field}>
+            <span className={styles.label}>Password</span>
+            <input
+              className={styles.input}
+              type="password"
+              name="password"
+              placeholder="••••••••"
+              required
+            />
           </label>
-          <div className="form-actions">
-            <button type="button" disabled>
+          <div className={styles.actions}>
+            <button type="button" className={styles.primary} disabled>
               Sign in (coming soon)
             </button>
-            <button type="button" className="text-button">
+            <button type="button" className={styles.ghost}>
               Forgot password?
             </button>
           </div>

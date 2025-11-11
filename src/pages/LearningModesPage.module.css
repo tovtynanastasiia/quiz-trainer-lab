@@ -1,0 +1,12 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+.copy {
+  color: rgba(226, 232, 240, 0.92);
+  line-height: 1.6;
+  margin: 0;
+}
+

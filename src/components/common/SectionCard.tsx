@@ -1,10 +1,13 @@
 import type { PropsWithChildren, ReactNode } from 'react'
+import { classNames } from '../../lib/classNames'
+import styles from './SectionCard.module.css'
 
 interface SectionCardProps {
   title: string
   description?: string
   icon?: ReactNode
   action?: ReactNode
+  className?: string
 }
 
 export function SectionCard({
@@ -12,23 +15,20 @@ export function SectionCard({
   description,
   icon,
   action,
+  className,
   children,
 }: PropsWithChildren<SectionCardProps>) {
   return (
-    <article className="section-card">
-      <div className="section-card__header">
-        {icon ? <div className="section-card__icon">{icon}</div> : null}
+    <article className={classNames(styles.root, className)}>
+      <div className={styles.header}>
+        {icon ? <div className={styles.icon}>{icon}</div> : null}
         <div>
-          <h2 className="section-card__title">{title}</h2>
-          {description ? (
-            <p className="section-card__description">{description}</p>
-          ) : null}
+          <h2 className={styles.title}>{title}</h2>
+          {description ? <p className={styles.description}>{description}</p> : null}
         </div>
-        {action ? <div className="section-card__action">{action}</div> : null}
+        {action ? <div className={styles.action}>{action}</div> : null}
       </div>
-      {children ? (
-        <div className="section-card__content">{children}</div>
-      ) : null}
+      {children ? <div className={styles.content}>{children}</div> : null}
     </article>
   )
 }

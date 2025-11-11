@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import type { PageDefinition, PageKey } from '../types/navigation'
 import { PrimaryNav } from '../components/navigation/PrimaryNav'
+import styles from './AppLayout.module.css'
 
 interface AppLayoutProps extends PropsWithChildren {
   pages: PageDefinition[]
@@ -15,18 +16,18 @@ export function AppLayout({
   children,
 }: AppLayoutProps) {
   return (
-    <div className="app-shell">
-      <aside className="app-shell__sidebar">
-        <div className="app-shell__brand">
-          <span className="app-shell__brand-mark">QT</span>
-          <span className="app-shell__brand-text">Quiz Trainer</span>
+    <div className={styles.appShell}>
+      <aside className={styles.sidebar}>
+        <div className={styles.brand}>
+          <span className={styles.brandMark}>QT</span>
+          <span className={styles.brandText}>Quiz Trainer</span>
         </div>
         <PrimaryNav items={pages} activePage={activePage} onNavigate={onNavigate} />
       </aside>
-      <div className="app-shell__content">
-        <main className="app-shell__main">{children}</main>
-        <footer className="app-shell__footer">
-          <small>Lab 3 • Project structure preview (no business logic yet)</small>
+      <div className={styles.content}>
+        <main className={styles.main}>{children}</main>
+        <footer className={styles.footer}>
+          <small>Lab 4 • Styled interface prototype (no business logic yet)</small>
         </footer>
       </div>
     </div>

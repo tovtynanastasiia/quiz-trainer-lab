@@ -1,4 +1,6 @@
 import type { PageDefinition, PageKey } from '../../types/navigation'
+import { classNames } from '../../lib/classNames'
+import styles from './PrimaryNav.module.css'
 
 interface PrimaryNavProps {
   items: PageDefinition[]
@@ -9,16 +11,19 @@ interface PrimaryNavProps {
 export function PrimaryNav({ items, activePage, onNavigate }: PrimaryNavProps) {
   return (
     <nav aria-label="Main">
-      <ul className="nav-list">
+      <ul className={styles.navList}>
         {items.map((item) => (
           <li key={item.key}>
             <button
               type="button"
-              className={item.key === activePage ? 'nav-link active' : 'nav-link'}
+              className={classNames(
+                styles.navButton,
+                item.key === activePage && styles.navButtonActive,
+              )}
               onClick={() => onNavigate(item.key)}
             >
-              <span className="nav-label">{item.label}</span>
-              <span className="nav-description">{item.description}</span>
+              <span className={styles.navLabel}>{item.label}</span>
+              <span className={styles.navDescription}>{item.description}</span>
             </button>
           </li>
         ))}
