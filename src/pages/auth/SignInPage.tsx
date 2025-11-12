@@ -8,7 +8,7 @@ const SignInPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { login } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from =
@@ -19,13 +19,16 @@ const SignInPage: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    // TODO: Implement Supabase authentication
-    // const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
-    // if (error) setError(error.message);
-    // else login();
-    login();
-    navigate(from, { replace: true });
+    try {
+      await signIn({ email: email.trim(), password });
+      navigate(from, { replace: true });
+    } catch (authError) {
+      const message =
+        authError instanceof Error ? authError.message : "Не вдалося увійти. Спробуйте ще раз.";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

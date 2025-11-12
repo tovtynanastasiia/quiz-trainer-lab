@@ -8,20 +8,31 @@ const SignUpPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { login } = useAuth();
+  const [info, setInfo] = useState<string | null>(null);
+  const { signUp } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    // TODO: Implement Supabase authentication
-    // const { error } = await supabase.auth.signUp({ email, password });
-    setLoading(false);
-    // if (error) setError(error.message);
-    // else navigate('/quiz');
-    login();
-    navigate("/quiz", { replace: true });
+    setInfo(null);
+    try {
+      const data = await signUp({ email: email.trim(), password });
+      if (data.session) {
+        navigate("/quiz", { replace: true });
+      } else {
+        setInfo("Ми надіслали лист для підтвердження. Перевірте вашу пошту.");
+      }
+    } catch (authError) {
+      const message =
+        authError instanceof Error
+          ? authError.message
+          : "Не вдалося створити акаунт. Спробуйте ще раз.";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,6 +58,7 @@ const SignUpPage: React.FC = () => {
             minLength={6}
           />
           {error && <div className={styles.error}>{error}</div>}
+          {info && <div className={styles.success}>{info}</div>}
           <button className="btn btn-primary w-full" disabled={loading} type="submit">
             {loading ? "Зачекайте..." : "Створити акаунт"}
           </button>

@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
+import { useAuth } from "../lib/auth/AuthContext";
 
 const HomePage: React.FC = () => {
+  const { isAuthenticated, loading } = useAuth();
+
   return (
     <div className="container-nice py-8 space-y-8">
       {/* Заголовок */}
@@ -12,12 +15,25 @@ const HomePage: React.FC = () => {
           Інтерактивний тренажер для вивчення іноземних слів
         </p>
         <div className={styles.headerButtons}>
-          <Link className={`btn btn-primary ${styles.headerButton}`} to="/auth/sign-in">
-            Увійти
-          </Link>
-          <Link className={`btn btn-ghost ${styles.headerButton}`} to="/auth/sign-up">
-            Реєстрація
-          </Link>
+          {loading ? null : isAuthenticated ? (
+            <>
+              <Link className={`btn btn-primary ${styles.headerButton}`} to="/quiz">
+                Перейти до квізів
+              </Link>
+              <Link className={`btn btn-ghost ${styles.headerButton}`} to="/account">
+                Мій профіль
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link className={`btn btn-primary ${styles.headerButton}`} to="/auth/sign-in">
+                Увійти
+              </Link>
+              <Link className={`btn btn-ghost ${styles.headerButton}`} to="/auth/sign-up">
+                Реєстрація
+              </Link>
+            </>
+          )}
         </div>
       </div>
 

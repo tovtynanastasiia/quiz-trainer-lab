@@ -1,38 +1,70 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./ManageSetsPage.module.css";
+import { useQuizSets } from "../../hooks/useQuizSets";
+import { useQuizWords } from "../../hooks/useQuizWords";
 
 const ManageSetsPage: React.FC = () => {
-  const [sets] = useState<Array<{ id: string; name: string }>>([
-    { id: "1", name: "Англійська базова" },
-    { id: "2", name: "Німецька для початківців" },
-    { id: "3", name: "Французька розмовна" },
-  ]);
+  const { sets, createSet, updateSet, deleteSet } = useQuizSets();
+  const { words } = useQuizWords("all");
   const [newSetName, setNewSetName] = useState("");
   const [creating, setCreating] = useState(false);
 
-  const handleCreateSet = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const wordsBySetId = useMemo(() => {
+    const groups = new Map<string, number>();
+    words.forEach((word) => {
+      groups.set(word.setId, (groups.get(word.setId) ?? 0) + 1);
+    });
+    return groups;
+  }, [words]);
+
+  const handleCreateSet = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const name = newSetName.trim();
-    if (!name) return;
-    setCreating(true);
-    // TODO: Implement createSet API
-    // await createSet(name);
-    setNewSetName("");
-    setCreating(false);
+    if (!name) {
+      alert("Введіть назву набору");
+      return;
+    }
+    if (sets.some((set) => set.name.toLowerCase() === name.toLowerCase())) {
+      alert("Набір із такою назвою вже існує");
+      return;
+    }
+    try {
+      setCreating(true);
+      await createSet({ name });
+      setNewSetName("");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Не вдалося створити набір");
+    } finally {
+      setCreating(false);
+    }
   };
 
-  const handleRename = (id: string, oldName: string) => {
+  const handleRename = async (id: string, oldName: string) => {
     const name = prompt("Нова назва?", oldName)?.trim();
     if (!name || name === oldName) return;
-    // TODO: Implement renameSet API
-    // await renameSet(id, name);
+    if (sets.some((set) => set.id !== id && set.name.toLowerCase() === name.toLowerCase())) {
+      alert("Такий набір уже існує");
+      return;
+    }
+    try {
+      await updateSet(id, { name });
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Не вдалося перейменувати набір");
+    }
   };
 
-  const handleDelete = (id: string) => {
-    if (!window.confirm("Видалити набір разом зі словами?")) return;
-    // TODO: Implement deleteSet API
-    // await deleteSet(id);
+  const handleDelete = async (id: string, name: string) => {
+    const count = wordsBySetId.get(id) ?? 0;
+    const confirmation = count
+      ? `Видалити набір «${name}» разом із ${count} словами?`
+        : `Видалити набір «${name}»?`;
+    if (!window.confirm(confirmation)) return;
+    try {
+      await deleteSet(id);
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Не вдалося видалити набір");
+    }
   };
 
   return (
@@ -40,12 +72,12 @@ const ManageSetsPage: React.FC = () => {
       <div className={styles.header}>
         <h1 className="text-2xl font-semibold">Керування наборами</h1>
         <form onSubmit={handleCreateSet} className={styles.createForm}>
-          <input
-            className="input"
-            placeholder="Назва нового набору"
-            value={newSetName}
+            <input
+              className="input"
+              placeholder="Назва нового набору"
+              value={newSetName}
             onChange={(e) => setNewSetName(e.target.value)}
-          />
+            />
           <button
             className="btn btn-primary"
             disabled={creating || !newSetName.trim()}
@@ -57,20 +89,30 @@ const ManageSetsPage: React.FC = () => {
       </div>
       <div className="card p-4">
         <div className={styles.setsList}>
-          {sets.map((s) => (
-            <div key={s.id} className={styles.setItem}>
-              <div className={styles.setName}>{s.name}</div>
+          {sets.map((set) => (
+            <div key={set.id} className={styles.setItem}>
+              <div>
+                <div className={styles.setName}>{set.name}</div>
+                <p className={styles.setMeta}>
+                  Слів у наборі: <strong>{wordsBySetId.get(set.id) ?? 0}</strong>
+                </p>
+              </div>
               <div className={styles.setActions}>
-                <Link className="btn btn-ghost text-sm" to={`/quiz/manage/words?setId=${s.id}`}>
+                <Link className="btn btn-ghost text-sm" to={`/quiz/manage/words?setId=${set.id}`}>
                   Редагувати слова
                 </Link>
                 <button
                   className="btn btn-ghost text-sm"
-                  onClick={() => handleRename(s.id, s.name)}
+                  type="button"
+                  onClick={() => handleRename(set.id, set.name)}
                 >
                   Перейменувати
                 </button>
-                <button className="btn btn-ghost text-sm" onClick={() => handleDelete(s.id)}>
+                <button
+                  className="btn btn-ghost text-sm"
+                  type="button"
+                  onClick={() => handleDelete(set.id, set.name)}
+                >
                   Видалити
                 </button>
               </div>

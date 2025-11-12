@@ -47,3 +47,8 @@
   color: var(--color-red-600);
   font-size: 0.875rem;
 }
+
+.success {
+  color: var(--color-green-600);
+  font-size: 0.875rem;
+}

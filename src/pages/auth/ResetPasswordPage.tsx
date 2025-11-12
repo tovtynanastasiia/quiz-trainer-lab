@@ -1,18 +1,31 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Auth.module.css";
+import { useAuth } from "../../lib/auth/AuthContext";
 
 const ResetPasswordPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { sendPasswordReset } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    // TODO: Implement Supabase password reset
-    // const { error } = await supabase.auth.resetPasswordForEmail(email);
+    setLoading(true);
+    try {
+      await sendPasswordReset(email.trim());
     setSent(true);
+    } catch (authError) {
+      const message =
+        authError instanceof Error
+          ? authError.message
+          : "Не вдалося надіслати лист. Спробуйте ще раз.";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -37,8 +50,8 @@ const ResetPasswordPage: React.FC = () => {
               required
             />
             {error && <div className={styles.error}>{error}</div>}
-            <button className="btn btn-primary w-full" type="submit">
-              Надіслати лист
+            <button className="btn btn-primary w-full" disabled={loading} type="submit">
+              {loading ? "Відправляємо…" : "Надіслати лист"}
             </button>
           </form>
         )}

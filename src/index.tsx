@@ -3,13 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { AuthProvider } from "./lib/auth/AuthContext";
+import { QuizDataProvider } from "./lib/quiz/QuizDataProvider";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <App />
+      <QuizDataProvider>
+    <App />
+      </QuizDataProvider>
     </AuthProvider>
   </React.StrictMode>
 );

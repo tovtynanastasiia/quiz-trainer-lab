@@ -10,12 +10,17 @@ const AccountPage: React.FC = () => {
     averageAccuracy: 0,
     totalTime: 0,
   };
-  const { logout } = useAuth();
+  const { signOut, user } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/", { replace: true });
+  const handleLogout = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("[AccountPage] Failed to sign out", error);
+    } finally {
+      navigate("/", { replace: true });
+    }
   };
 
   return (
@@ -26,7 +31,7 @@ const AccountPage: React.FC = () => {
           <div className={styles.profileHeader}>
             <div>
               <h1 className={styles.profileTitle}>Профіль користувача</h1>
-              <p className={styles.profileEmail}>user@example.com</p>
+                <p className={styles.profileEmail}>{user?.email ?? "user@example.com"}</p>
             </div>
             <div className={styles.profileActions}>
               <Link className="btn btn-primary" to="/quiz">

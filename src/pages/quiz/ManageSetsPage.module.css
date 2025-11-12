@@ -47,6 +47,12 @@
   min-width: 150px;
 }
 
+.setMeta {
+  font-size: 0.85rem;
+  color: var(--color-gray-500);
+  margin-top: 0.25rem;
+}
+
 .setActions {
   display: flex;
   gap: 0.5rem;

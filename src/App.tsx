@@ -23,10 +23,14 @@ import styles from "./App.module.css";
 import { useAuth } from "./lib/auth/AuthContext";
 
 function App() {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, signOut, loading } = useAuth();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("[App] Failed to sign out", error);
+    }
   };
 
   return (
@@ -45,7 +49,7 @@ function App() {
                 <Link to="/quiz/manage" className={styles.navLink}>
                   Набори
                 </Link>
-                {isAuthenticated ? (
+                {loading ? null : isAuthenticated ? (
                   <>
                     <Link to="/account" className={styles.navLink}>
                       Профіль
@@ -66,7 +70,7 @@ function App() {
                 )}
               </div>
             </div>
-          </div>
+      </div>
         </nav>
 
         <main>
