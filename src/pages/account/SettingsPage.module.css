@@ -1,0 +1,89 @@
+/* Settings Page Styles */
+
+.section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-gray-800);
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--color-gray-50);
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.settingItem:last-child {
+  margin-bottom: 0;
+}
+
+.settingLabel {
+  font-weight: 500;
+  color: var(--color-gray-800);
+  margin-bottom: 0.25rem;
+}
+
+.settingValue {
+  color: var(--color-gray-600);
+  font-size: 0.875rem;
+}
+
+.settingDescription {
+  color: var(--color-gray-500);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dangerButton {
+  background-color: var(--color-red-600);
+  color: white;
+  border: none;
+}
+
+.dangerButton:hover {
+  background-color: var(--color-red-700);
+}
+
+.warningButton {
+  color: var(--color-red-600);
+}
+
+.warningButton:hover {
+  color: var(--color-red-700);
+  background-color: var(--color-red-50);
+}
+
+@media (max-width: 640px) {
+  .settingItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

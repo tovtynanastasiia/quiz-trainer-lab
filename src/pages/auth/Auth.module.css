@@ -1,0 +1,54 @@
+/* Auth Pages Styles */
+
+.container {
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.formCard {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-gray-100);
+  padding: 2rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+  margin-top: 0.75rem;
+}
+
+.link {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.link:hover {
+  color: var(--color-gray-900);
+}
+
+.error {
+  color: var(--color-red-600);
+  font-size: 0.875rem;
+}
+
+.success {
+  color: var(--color-green-600);
+  font-size: 0.875rem;
+}

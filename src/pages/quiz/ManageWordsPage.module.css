@@ -1,0 +1,278 @@
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 220px;
+}
+
+.headerActions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.subtitle {
+  color: var(--color-gray-500);
+  font-size: 0.9rem;
+}
+
+.sectionCard {
+  background: white;
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-gray-100);
+  box-shadow: var(--shadow-soft);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.sectionDescription {
+  color: var(--color-gray-600);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.bulkForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bulkTextarea {
+  resize: vertical;
+  min-height: 140px;
+  border-radius: 1rem;
+  border: 1px solid var(--color-gray-200);
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bulkTextarea:focus {
+  border-color: var(--color-blue-400);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  outline: none;
+}
+
+.bulkActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.errorText {
+  color: var(--color-red-600);
+  font-size: 0.9rem;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.listCount {
+  color: var(--color-gray-500);
+  font-size: 0.85rem;
+}
+
+.muted {
+  color: var(--color-gray-500);
+  font-size: 0.95rem;
+}
+
+.tableHeader {
+  display: none;
+  grid-template-columns: 1.4fr 1.4fr auto;
+  gap: 1.25rem;
+  color: var(--color-gray-500);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.headerCell {
+  padding: 0 0.25rem;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.row {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--color-gray-100);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: var(--color-gray-50);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.row:hover {
+  border-color: var(--color-blue-200);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.rowDirty {
+  border-color: var(--color-blue-300);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mobileLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.textInput {
+  border-radius: 0.9rem;
+  border: 1px solid var(--color-gray-200);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.textInput:focus {
+  border-color: var(--color-blue-400);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+  outline: none;
+}
+
+.actionsCell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.dirtyBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-blue-600);
+  background: rgba(59, 130, 246, 0.12);
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.placeholderCard {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+  background: white;
+  border-radius: 1.5rem;
+  border: 1px solid var(--color-gray-100);
+  box-shadow: var(--shadow-soft);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.placeholderTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.placeholderText {
+  color: var(--color-gray-600);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.placeholderSets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.placeholderHint {
+  color: var(--color-gray-500);
+  font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .tableHeader {
+    display: grid;
+  }
+
+  .row {
+    grid-template-columns: 1.4fr 1.4fr auto;
+    align-items: start;
+  }
+
+  .actionsCell {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .mobileLabel {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 2rem 1rem;
+  }
+
+  .header {
+    align-items: stretch;
+  }
+
+  .sectionCard {
+    padding: 1.5rem;
+  }
+}
+
