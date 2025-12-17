@@ -31,8 +31,11 @@
     "format:check": "prettier --check src/**/*.{ts,tsx,css,json}",
     "cypress": "cypress open",
     "cypress:run": "cypress run",
+    "cypress:run:record": "cypress run --record --key 15ca7818-fa96-4aa0-9454-52bbbc22c821",
     "cypress:e2e": "cypress run --spec 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}'",
+    "cypress:e2e:with-server": "start-server-and-test start http://localhost:3000 cypress:e2e",
     "cypress:component": "cypress run --component",
+    "cypress:component:record": "cypress run --component --record --key 15ca7818-fa96-4aa0-9454-52bbbc22c821",
     "cypress:headless": "cypress run --headless"
   },
   "devDependencies": {
