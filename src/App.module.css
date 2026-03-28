@@ -1,0 +1,47 @@
+/* App Styles */
+
+.app {
+  min-height: 100vh;
+  background-color: var(--color-gray-50);
+}
+
+.nav {
+  background-color: white;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.navContainer {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 2rem;
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navLink {
+  color: var(--color-gray-700);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--color-gray-900);
+}

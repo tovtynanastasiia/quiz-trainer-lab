@@ -1,0 +1,91 @@
+/* Manage Sets Page Styles */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.createForm {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  max-width: 600px;
+}
+
+.setsList {
+  display: grid;
+  gap: 1rem;
+}
+
+.setItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.75rem;
+  background-color: white;
+  box-shadow: var(--shadow-soft);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.setItem:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-blue-300);
+}
+
+.setName {
+  font-weight: 500;
+  flex: 1;
+  min-width: 150px;
+}
+
+.setActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.setActions .btn {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+  min-width: auto;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.emptyEmoji {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .createForm {
+    max-width: 100%;
+    flex-direction: column;
+  }
+
+  .setItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .setActions {
+    flex-direction: column;
+  }
+}
